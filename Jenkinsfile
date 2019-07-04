@@ -4,6 +4,8 @@ pipeline {
     stage('Built') {
       steps {
         sh 'git checkout test'
+        sh 'git log'
+        sh 'cat tests/unit_tests.c '
         sh 'make'
       }
     }

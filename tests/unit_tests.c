@@ -146,6 +146,16 @@ Test(cd, is_equal_not_eq, .init = redirect_all_std)
     cr_assert_stderr_eq_str("salut: No such file or directory.\n");
 }
 
+Test(cd, cd_a_folder_without_permission, .init = redirect_all_std)
+{
+    char *env[] = {"PWD=/home/apereira", "HOME=/home/apereira", "hola=", NULL};
+    char **env_copied = copy_env(env);
+    char str[] = "cd cd_test_folder";
+
+    env_copied = cd_function(str, env_copied);
+    cr_assert_stderr_eq_str("cd_test_folder: Permission denied\n");
+}
+
 Test(cd, cd_a_file, .init = redirect_all_std)
 {
     char *env[] = {"PWD=/home/apereira", "HOME=/home/apereira", "hola=", NULL};
@@ -154,6 +164,16 @@ Test(cd, cd_a_file, .init = redirect_all_std)
 
     env_copied = cd_function(str, env_copied);
     cr_assert_stderr_eq_str("main.c: Not a directory.\n");
+}
+
+Test(cd, check_filepath_function_return_value, .init = redirect_all_std)
+{
+    char *env[] = {"PWD=/home/apereira", "HOME=/home/apereira", "hola=", NULL};
+    char **env_copied = copy_env(env);
+    char str[] = "cd cd_test_folder";
+
+    env_copied = cd_function(str, env_copied);
+    cr_assert_stderr_eq_str("cd_test_folder: Permission denied.\n");
 }
 
 Test(exec, is_equal_not_eq, .init = redirect_all_std)

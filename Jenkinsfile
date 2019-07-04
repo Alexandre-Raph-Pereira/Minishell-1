@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('Built') {
       steps {
-        git(branch: 'pipeline', url: '7b2551ddc05aa4c696a449f86d95502368bdc15b')
         sh 'make'
+        sh 'git checkout pipeline'
       }
     }
     stage('Test') {

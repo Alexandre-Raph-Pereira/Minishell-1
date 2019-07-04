@@ -10,8 +10,6 @@ make re'''
     stage('Test') {
       steps {
         sh 'make tests_run'
-        archiveArtifacts '*.gcno'
-        archiveArtifacts '*.gcda'
         sh 'gcovr'
       }
     }

@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('Built') {
       steps {
+        sh 'git pull'
         sh 'git checkout test'
         sh 'git log'
         sh 'cat tests/unit_tests.c '

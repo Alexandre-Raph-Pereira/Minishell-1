@@ -53,4 +53,5 @@ char **add_env(char *new_env[], char **str, int i);
 char **copy_env(char *old_env[]);
 int check_bin(char *str, char *str2);
 int check_arg(char **arr);
+int check_filepath(char **arr);
 #endif /* !MY_H_ */

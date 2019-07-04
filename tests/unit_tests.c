@@ -156,6 +156,17 @@ Test(cd, cd_a_file, .init = redirect_all_std)
     cr_assert_stderr_eq_str("main.c: Not a directory.\n");
 }
 
+Test(cd, check_return_value_of_check_filepath, .init = redirect_all_std)
+{
+    char *env[] = {"PWD=/home/apereira", "HOME=/home/apereira", "hola=", NULL};
+    char **env_copied = copy_env(env);
+    char *str[] = {"cd", "include", NULL};
+    int r = 0;
+
+    r = check_filepath(str);
+    cr_assert_eq(r, 1);
+}
+
 Test(exec, is_equal_not_eq, .init = redirect_all_std)
 {
     char *env[] = {"PATH=/usr/bin/:/bin/", "HOME=/home/apereira", "h=", NULL};

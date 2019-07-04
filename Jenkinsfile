@@ -3,13 +3,14 @@ pipeline {
   stages {
     stage('Built') {
       steps {
-        sh 'make'
+        sh '''
+make re'''
       }
     }
     stage('Test') {
       steps {
         sh 'make tests_run'
-        archiveArtifacts '*.gcno'
+        archiveArtifacts '*.gcno *.gcda'
       }
     }
     stage('Deploy') {

@@ -9,6 +9,7 @@ pipeline {
     stage('Test') {
       steps {
         sh 'make tests_run'
+        archiveArtifacts '*.gcno'
       }
     }
     stage('Deploy') {

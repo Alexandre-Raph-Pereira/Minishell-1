@@ -3,14 +3,13 @@ pipeline {
   stages {
     stage('Built') {
       steps {
+        sh 'git checkout test'
         sh 'make'
-        sh 'git checkout pipeline'
       }
     }
     stage('Test') {
       steps {
         sh 'make tests_run'
-        archiveArtifacts '*.gcno'
       }
     }
     stage('Deploy') {

@@ -11,5 +11,10 @@ pipeline {
         sh 'make tests_run'
       }
     }
+    stage('Deploy') {
+      steps {
+        echo 'it\'s finish'
+      }
+    }
   }
 }
